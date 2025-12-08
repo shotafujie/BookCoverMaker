@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BookCoverMaker - 文庫本用ブックカバー生成ツール</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>BookCoverMaker</h1>
+      <p>シンプルで使いやすい、文庫本用ブックカバー生成ツール</p>
+    </header>
+
+    <main>
+      <div class="control-panel">
+        <h2>設定</h2>
+
+        <!-- 柄パターン選択 -->
+        <div class="form-group">
+          <label for="pattern-select">柄パターン</label>
+          <select id="pattern-select" aria-label="柄パターンを選択">
+            <option value="none">柄なし（無地）</option>
+            <option value="grid">グリッド</option>
+            <option value="dots">ドット</option>
+            <option value="stripes-horizontal">横ストライプ</option>
+            <option value="stripes-vertical">縦ストライプ</option>
+            <option value="checkerboard">チェッカー</option>
+            <option value="diagonal">斜線</option>
+            <option value="zigzag">ジグザグ</option>
+            <option value="hexagon">ヘキサゴン</option>
+            <option value="wave">波模様</option>
+          </select>
+        </div>
+
+        <!-- 色選択 -->
+        <div class="form-group">
+          <label for="color-picker">色</label>
+          <div class="color-input-group">
+            <input type="color" id="color-picker" value="#000000" aria-label="色を選択">
+            <input type="text" id="color-text" value="#000000" pattern="^#[0-9A-Fa-f]{6}$" aria-label="色コードを入力">
+          </div>
+        </div>
+
+        <!-- 画像アップロード -->
+        <div class="form-group">
+          <label for="image-upload">画像（オプション）</label>
+          <div class="drop-zone" id="drop-zone">
+            <p>ここに画像をドロップ</p>
+            <p class="drop-zone-hint">または</p>
+            <input type="file" id="image-upload" accept="image/jpeg,image/png,image/gif" aria-label="画像ファイルを選択">
+            <label for="image-upload" class="file-label">ファイルを選択</label>
+          </div>
+          <div id="image-preview" class="image-preview" style="display: none;">
+            <img id="preview-img" alt="アップロードされた画像のプレビュー">
+            <button id="remove-image" class="btn-secondary" aria-label="画像を削除">画像を削除</button>
+          </div>
+        </div>
+
+        <!-- 画像位置調整 -->
+        <div class="form-group" id="image-controls" style="display: none;">
+          <label for="image-x">位置 X</label>
+          <input type="range" id="image-x" min="0" max="200" value="100" aria-label="画像のX座標">
+
+          <label for="image-y">位置 Y</label>
+          <input type="range" id="image-y" min="0" max="200" value="100" aria-label="画像のY座標">
+
+          <label for="image-scale">スケール</label>
+          <input type="range" id="image-scale" min="10" max="200" value="100" aria-label="画像のスケール">
+        </div>
+
+        <!-- PDFダウンロードボタン -->
+        <div class="form-group">
+          <button id="download-pdf" class="btn-primary" aria-label="PDFをダウンロード">
+            PDFをダウンロード
+          </button>
+        </div>
+      </div>
+
+      <!-- プレビュー -->
+      <div class="preview-panel">
+        <h2>プレビュー（印刷面）</h2>
+        <div class="canvas-container">
+          <canvas id="preview-canvas" width="800" height="398" aria-label="ブックカバーのプレビュー"></canvas>
+        </div>
+        <p class="preview-note">※ A4横向きで両面印刷してください（下端のみ裁断）</p>
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 BookCoverMaker by Shota Fujie | <a href="https://github.com/shotafujie/BookCoverMaker" target="_blank">GitHub</a></p>
+    </footer>
+  </div>
+
+  <!-- jsPDF ライブラリ -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <!-- アプリケーションスクリプト -->
+  <script src="js/patterns.js"></script>
+  <script src="js/pdf-utils.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

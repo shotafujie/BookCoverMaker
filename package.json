@@ -1,0 +1,28 @@
+{
+  "name": "bookcover-maker",
+  "version": "1.0.0",
+  "description": "シンプルで使いやすい、文庫本用ブックカバー生成ツール",
+  "main": "js/app.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "keywords": [
+    "bookcover",
+    "pdf",
+    "generator"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "canvas": "^2.11.2",
+    "jest": "^29.7.0",
+    "jest-canvas-mock": "^2.5.2",
+    "jest-environment-jsdom": "^29.7.0"
+  },
+  "dependencies": {
+    "jspdf": "^2.5.1"
+  }
+}
